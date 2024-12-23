@@ -1,0 +1,17 @@
+
+---
+
+### 5. **Add a `.gitignore` File**
+Prevent sensitive files and unnecessary data from being tracked by Git. Create a `.gitignore` file with the following content:
+
+```plaintext
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore environment file
+.env
+
+# Ignore virtual environment folders
+venv/
+.env/

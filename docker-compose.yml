@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  pdf-merger:
+    build: .
+    volumes:
+      - ./data/source:/data/source
+      - ./data/target:/data/target
+    environment:
+      - SOURCE_FOLDER=/data/source
+      - TARGET_FOLDER=/data/target

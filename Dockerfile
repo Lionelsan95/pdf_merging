@@ -1,27 +1,24 @@
-# Use the official Python image
+# Base Python image
 FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file to the working directory
+# Copy dependency files
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the application code
 COPY . .
 
-# Expose a port (if necessary; not needed for your script but can be useful for extensions)
-# EXPOSE 8000
+# Create source and target directories inside the container
+RUN mkdir -p /app/data/source /app/data/target
 
-# Define environment variables (optional; good for defaults)
-ENV SOURCE_FOLDER=/data/source
-ENV TARGET_FOLDER=/data/target
+# Default environment variables (can be overridden)
+ENV SOURCE_FOLDER=/app/data/source
+ENV TARGET_FOLDER=/app/data/target
 
-# Create folders for source and target files
-RUN mkdir -p /data/source /data/target
-
-# Define the default command to run the script
-CMD ["python", "merge_pdfs.py"]
+# Default command to run the app
+CMD ["python", "app.py"]
